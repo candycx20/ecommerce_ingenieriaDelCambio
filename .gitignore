@@ -1,0 +1,27 @@
+# Angular
+/.angular/cache
+/.angular/cli
+/.angular/language-service
+/.angular/cache
+/angular.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Compiled output
+dist/
+tmp/
+out-tsc/
+
+# Misc
+/.idea
+/.vscode
+/.history
+.DS_Store
+*.swp

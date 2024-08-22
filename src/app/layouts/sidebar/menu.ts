@@ -67,12 +67,6 @@ export const MENU: MenuItem[] = [
         parentId: 8
       },
       {
-        id: 10,
-        label: 'MENUITEMS.APPS.LIST.CHAT',
-        link: '/chat',
-        parentId: 8
-      },
-      {
         id: 11,
         label: 'MENUITEMS.APPS.LIST.EMAIL',
         parentId: 8,

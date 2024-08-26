@@ -30,6 +30,8 @@ import { Router } from '@angular/router';
  */
 export class ProductsComponent {
 
+  data: any = [];
+
   // bread crumb items
   breadCrumbItems!: Array<{}>;
 
@@ -80,6 +82,9 @@ export class ProductsComponent {
   }
 
   ngOnInit(): void {
+
+    this.mostrarData(),
+
     /**
     * BreadCrumb
     */
@@ -418,4 +423,23 @@ export class ProductsComponent {
     this.router.navigate(['/ecommerce/product-detail/1', this.publishedproduct[id]])
   }
 
+  mostrarData() {
+    this.service.getData().subscribe(data => {
+      this.data = data;
+      console.log(this.data)
+      }
+    );
+  }
+
+  /* mostrarData() {
+    this.service.getData().subscribe(
+      (data: any) => {
+        this.products = data;
+        console.log(this.data)
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
+  } */
 }

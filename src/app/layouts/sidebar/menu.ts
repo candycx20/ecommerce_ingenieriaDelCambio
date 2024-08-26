@@ -6,6 +6,11 @@ export const MENU: MenuItem[] = [
     label: 'MENUITEMS.MENU.TEXT',
     isTitle: true
   },
+  {id: 13,
+    label: 'MENUITEMS.APPS.LIST.PRODUCTS',
+    link: '/ecommerce/products',
+    parentId: 12
+  },
   {
     id: 8,
     label: 'MENUITEMS.APPS.TEXT',

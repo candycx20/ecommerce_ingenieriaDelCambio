@@ -12,6 +12,7 @@ import { SortColumn, SortDirection } from './products-sortable.directive';
 // Products Services
 import { restApiService } from "../../../core/services/rest-api.service";
 import { Filter } from 'angular-feather/icons';
+import { HttpClient } from '@angular/common/http';
 
 interface SearchResult {
   countries: productModel[];
@@ -54,6 +55,9 @@ function matches(country: productModel, term: string, pipe: PipeTransform) {
 
 @Injectable({ providedIn: 'root' })
 export class AdvancedService {
+
+  private urlApi = 'http://localhost:8000/';
+
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
   private _countries$ = new BehaviorSubject<productModel[]>([]);
@@ -76,7 +80,8 @@ export class AdvancedService {
   };
   user = [];
   products: any | undefined;
-  constructor(private pipe: DecimalPipe, public ApiService: restApiService) {
+
+  constructor(private pipe: DecimalPipe, public ApiService: restApiService, private http: HttpClient) {
     this._search$.pipe(
       tap(() => this._loading$.next(true)),
       debounceTime(200),
@@ -95,7 +100,7 @@ export class AdvancedService {
       data => {
         const users = JSON.parse(data);
         this.products = users.data;
-      });
+    });
   }
 
   get countries$() { return this._countries$.asObservable(); }
@@ -190,4 +195,12 @@ export class AdvancedService {
     countries = countries.slice(this._state.startIndex - 1, this._state.endIndex);
     return of({ countries, total, allproduct });
   }
+
+
+  
+
+  public getData(): Observable<any> {
+      return this.http.get<any>(`${this.urlApi}productos/`)
+  }
+
 }

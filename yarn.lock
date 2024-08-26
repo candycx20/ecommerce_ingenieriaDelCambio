@@ -203,13 +203,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/google-maps@^16.2.4":
-  version "16.2.5"
-  resolved "https://registry.npmjs.org/@angular/google-maps/-/google-maps-16.2.5.tgz"
-  integrity sha512-TF3nhcDNAKHp05AOUHRg8DsOBKXKvmEqUr3AczwW/AA0kad0ZW/4dZXJh/g4ddHYa1HxglVBvIr8j3J8offJMw==
-  dependencies:
-    "@types/google.maps" "^3.52.4"
-    tslib "^2.3.0"
+
 
 "@angular/localize@^16.2.5":
   version "16.2.6"

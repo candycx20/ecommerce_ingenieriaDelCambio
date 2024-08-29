@@ -1,3 +1,150 @@
 <!-- Start Breadcrumbs -->
-<app-breadcrumbs title="Starter" [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
+<app-breadcrumbs title="Productos de Ropa" [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
 <!-- End Breadcrumbs -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="">
+        <div class="card-body">
+          <div class="text-center">
+            <ul class="list-inline categories-filter animation-nav" id="filter">
+              <li class="list-inline-item"><a class="categories active" data-filter="*">Todos</a></li>
+              <li class="list-inline-item"><a class="categories" data-filter=".camisas">Camisas</a></li>
+              <li class="list-inline-item"><a class="categories" data-filter=".pantalones">Pantalones</a></li>
+              <li class="list-inline-item"><a class="categories" data-filter=".accesorios">Accesorios</a></li>
+            </ul>
+          </div>
+
+          <div class="row gallery-wrapper">
+            <div class="element-item col-xxl-3 col-xl-4 col-sm-6 camisas" *ngFor="let item of data">
+              <div class="gallery-box card"> 
+                <div class="card-body d-flex flex-column">
+                  <img class="gallery-img img-fluid mx-auto" [src]="item.img || 'assets/images/products/img-6.png'" alt="{{item.nombre}}"/>
+                  <div class="box-content mt-auto">
+                    <div class="d-flex align-items-center mt-1">
+                      <div class="flex-grow-1 text-muted">
+                        <h6 class="text-body text-truncate">{{item.nombre}}</h6>
+                        <span class="text-body">{{ item.producto_sucursals[0]?.precio | currency:'USD':true:'1.2-2' }}</span>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-column align-items-start mt-2">
+                      <button type="button" class="btn btn-sm btn-primary mb-2">
+                        Ver Detalles
+                      </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">
+                        <i class="ri-shopping-cart-line align-middle"></i> Añadir al Carrito
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end card body -->
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end col -->
+  </div>
+  <!-- end row -->
+</div>
+
+<style>
+  /* Estilos generales del contenedor */
+  .container {
+    margin-top: 20px;
+  }
+
+  /* Estilos para la tarjeta de producto */
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Estilos para el contenido de la tarjeta */
+  .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Estilos para la imagen del producto */
+  .gallery-img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Estilos para el contenido del producto */
+  .box-content {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Estilos para los filtros de categoría */
+  .categories-filter {
+    margin-bottom: 1.5rem;
+  }
+
+  .categories-filter a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .categories-filter a.active {
+    font-weight: bold;
+    color: #007bff;
+  }
+
+  /* Estilos para los botones */
+  .btn-primary, .btn-outline-secondary {
+    width: 100%;
+  }
+
+  .btn-outline-secondary {
+    border-color: #ddd;
+    color: #333;
+  }
+
+  .btn-outline-secondary .ri-shopping-cart-line {
+    font-size: 1.2rem;
+  }
+
+  /* Estilos para la disposición de los botones dentro del producto */
+  .box-content .d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .box-content .d-flex.flex-column {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .box-content .btn {
+    margin-bottom: 10px;
+  }
+
+  /* Agregar espacio uniforme alrededor de las columnas */
+  .gallery-wrapper .element-item {
+    padding: 15px; /* Ajusta este valor según la distancia que desees */
+  }
+
+  .row.gallery-wrapper {
+    margin: -15px; /* Debe coincidir con el valor de padding para balancear los márgenes */
+  }
+</style>

@@ -214,10 +214,6 @@ export class ProductsComponent {
       document.getElementById('p_' + id)?.remove();
     }
     else {
-      this.checkedValGet.forEach((item: any) => {
-        document.getElementById('p_' + item)?.remove();
-      });
-      (document.getElementById("selection-element") as HTMLElement).style.display = "none"
     }
   }
 
@@ -239,104 +235,6 @@ export class ProductsComponent {
     { name: 'Headset' },
     { name: 'Sweatshirt' },
   ];
-
-  // Check Box Checked Value Get
-  checkedValGet: any[] = [];
-  // Select Checkbox value Get
-  onCheckboxChange(e: any) {
-    var checkboxes: any = document.getElementsByName('checkAll');
-    var checkedVal: any[] = [];
-    var result
-    for (var i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked) {
-        result = checkboxes[i].value;
-        checkedVal.push(result);
-      }
-    }
-    this.checkedValGet = checkedVal
-    var checkBoxCount: any = document.getElementById('select-content') as HTMLElement;
-    checkBoxCount.innerHTML = checkedVal.length;
-    checkedVal.length > 0 ? (document.getElementById("selection-element") as HTMLElement).style.display = "block" : (document.getElementById("selection-element") as HTMLElement).style.display = "none";
-  }
-  /**
-    * Brand Filter
-    */
-  changeBrand(e: any) {
-    if (e.target.checked) {
-      this.Brand.push(e.target.defaultValue)
-    } else {
-      for (var i = 0; i < this.Brand.length; i++) {
-        if (this.Brand[i] === e.target.defaultValue) {
-          this.Brand.splice(i, 1)
-        }
-      }
-    }
-    this.totalbrand = this.Brand.length
-  }
-
-  /**
-  * Discount Filter
-  */
-  changeDiscount(e: any) {
-    if (e.target.checked) {
-      this.discountRates.push(e.target.defaultValue)
-
-      this.productList.subscribe(x => {
-        this.products = x.filter((product: any) => {
-          return product.rating > e.target.defaultValue;
-        });
-      });
-    } else {
-      for (var i = 0; i < this.discountRates.length; i++) {
-        if (this.discountRates[i] === e.target.defaultValue) {
-          this.discountRates.splice(i, 1)
-        }
-      }
-    }
-    this.totaldiscount = this.discountRates.length
-  }
-
-
-  /**
-   * Rating Filter
-   */
-  changeRating(e: any, rate: any) {
-    if (e.target.checked) {
-      this.Rating.push(e.target.defaultValue)
-      this.service.productRate = rate;
-    }
-    else {
-      for (var i = 0; i < this.Rating.length; i++) {
-        if (this.Rating[i] === e.target.defaultValue) {
-          this.Rating.splice(i, 1)
-        }
-      }
-      this.service.productRate = rate;
-    }
-    this.totalrate = this.Rating.length
-  }
-
-
-
-  /**
-   * Product Filtering  
-   */
-  changeProducts(e: any, name: any, category: any) {
-    const iconItems = document.querySelectorAll('.filter-list');
-    iconItems.forEach((item: any) => {
-      var el = item.querySelectorAll('a')
-      el.forEach((item: any) => {
-        var element = item.querySelector('h5').innerHTML
-        if (element == category) {
-          item.classList.add("active");
-        } else {
-          item.classList.remove("active");
-        }
-      })
-    });
-
-    this.service.ProductFilter = name
-  }
 
 
   /**
@@ -362,28 +260,6 @@ export class ProductsComponent {
       } else {
         this.publishedproduct = this.allpublish
         this.total = this.publishedproduct.length;
-      }
-    }
-
-  }
-
-  /**
-  * Range Slider Wise Data Filter
-  */
-  valueChange(value: number, boundary: boolean): void {
-    if (value > 0 && value < 1000) {
-      if (this.activeindex == '1') {
-        if (boundary) {
-          this.minValue = value;
-        } else {
-          this.maxValue = value;
-        }
-      } else if (this.activeindex == '2') {
-        if (boundary) {
-          this.minValue = value;
-        } else {
-          this.maxValue = value;
-        }
       }
     }
   }
@@ -430,16 +306,4 @@ export class ProductsComponent {
       }
     );
   }
-
-  /* mostrarData() {
-    this.service.getData().subscribe(
-      (data: any) => {
-        this.products = data;
-        console.log(this.data)
-      },
-      (error) => {
-        console.error('Error fetching products:', error);
-      }
-    );
-  } */
 }

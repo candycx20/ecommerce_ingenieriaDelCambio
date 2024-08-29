@@ -1,8 +1,8 @@
 export interface CartModel {
     id: any;
     img: string;
-    product: string;
-    quantity: any;
+    producto: string;
+    cantidad: any;
     price: any;
   }
   

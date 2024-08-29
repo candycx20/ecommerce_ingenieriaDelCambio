@@ -48,7 +48,7 @@ function sort(countries: productModel[], column: SortColumn, direction: string):
 
 function matches(country: productModel, term: string, pipe: PipeTransform) {
   return country.image.toLowerCase().includes(term.toLowerCase())
-    || country.name.toLowerCase().includes(term.toLowerCase())
+    || country.nombre.toLowerCase().includes(term.toLowerCase())
     || country.category.toLowerCase().includes(term.toLowerCase())
     ;
 }
@@ -167,7 +167,7 @@ export class AdvancedService {
 
     // 5. Rate Filter       
     if (productRate) {
-      countries = countries.filter(country => country.rating >= productRate);
+      countries = countries.filter(country => country.codigo >= productRate);
     }
     else {
       countries = countries;
